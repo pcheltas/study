@@ -7,14 +7,11 @@ import Inters.Feelings;
 public class Person implements Actions, Feelings {
     private String name;
     private Bodykit body;
-    private String aim;
     public String getName() {
         return name;
     }
 
-    public String getAim() {
-        return aim;
-    }
+
 
     public Person(String name, Bodykit body){
         this.name=name;
@@ -22,12 +19,11 @@ public class Person implements Actions, Feelings {
     }
 
     public void walk(String time) {
-        this.aim=aim;
         System.out.println(getName() + " идет на протяжении времени: " + time );
     }
 
     public void feel() {
-        if (body==Bodykit.толстый){
+        if (body==Bodykit.FAT){
             System.out.println(getName() + " испытывает страх из-за чувства зависания вниз головой");
         }
         else{
@@ -42,5 +38,13 @@ public class Person implements Actions, Feelings {
     public void suffer(){
         System.out.println(getName() + " изнывает от жары");
     }
+
+    @Override
+    public String toString(){
+        return ("Имя:" + name + "; телосложение: " + body);
+    }
+
+
+
 
 }

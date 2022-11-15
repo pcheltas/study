@@ -1,6 +1,6 @@
 package People;
 
 public enum Bodykit {
-    крепенький,
-    толстый
+    STURDY,
+    FAT
 }

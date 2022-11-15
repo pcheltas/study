@@ -8,8 +8,8 @@ public class Main {
     public static void main(String[] args) {
         Satellite Moon = new Satellite("Луна");
         Star Sun = new Star("Солнце");
-        Person Neznaika = new Person("Незнайка", Bodykit.крепенький);
-        Person Ponchik = new Person("Пончик", Bodykit.толстый);
+        Person Neznaika = new Person("Незнайка", Bodykit.STURDY);
+        Person Ponchik = new Person("Пончик", Bodykit.FAT);
         Moon.pullToCentre();
         if (Moon.getForce().equals("сильная")){
             Neznaika.feel();

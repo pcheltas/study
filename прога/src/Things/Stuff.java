@@ -10,4 +10,9 @@ public class Stuff {
     public Stuff(String name){
         this.name=name;
     }
+
+    @Override
+    public String toString(){
+        return ("Вещь:" + name);
+    }
 }

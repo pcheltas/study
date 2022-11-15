@@ -4,15 +4,15 @@ import Inters.ActStar;
 
 public class Star extends SpaceObject implements ActStar {
 
-    private String Weather;
+    private String weather;
     
 
-    public void setWeather(String Weather) {
-        this.Weather = Weather;
+    public void setWeather(String weather) {
+        this.weather = weather;
     }
 
     public String getWeather() {
-        return Weather;
+        return weather;
     }
 
     public Star(String name){
@@ -25,5 +25,10 @@ public class Star extends SpaceObject implements ActStar {
 
     public void stealAir(){
         System.out.println(getName() + " создает жуткую духоту");
+    }
+
+    @Override
+    public String toString() {
+        return ("Имя:" + getName() + "; погода: " + weather);
     }
 }

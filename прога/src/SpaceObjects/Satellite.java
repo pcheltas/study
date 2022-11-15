@@ -24,4 +24,8 @@ public class Satellite extends SpaceObject implements ActSat {
     public void distortImage(Place p){
         System.out.println ( p.getName() + " видится четко и поэтому кажется ближе");
     }
+
+    @Override
+    public String toString(){
+        return ("Имя:" + getName() + "; обладает силой: " + Force);}
 }
