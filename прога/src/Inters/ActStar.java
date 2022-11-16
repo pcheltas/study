@@ -1,6 +1,6 @@
-package Inters;
+package inters;
 
 public interface ActStar {
-    void warm();
+    void warm(String stuff);
     void stealAir();
 }

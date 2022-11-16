@@ -1,6 +1,6 @@
-package Inters;
+package inters;
 
-import Places.Place;
+import places.Place;
 
 public interface ActSat {
     void pullToCentre();

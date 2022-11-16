@@ -1,4 +1,4 @@
-package People;
+package people;
 
 public enum Bodykit {
     STURDY,

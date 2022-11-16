@@ -1,7 +1,8 @@
-package Inters;
+package inters;
+import things.Stuff;
 
 public interface Actions {
     void walk(String time);
-    void notToUse(String stuff);
+    void notToUse(Stuff stuff);
 
 }

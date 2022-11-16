@@ -1,4 +1,4 @@
-package Places;
+package places;
 
 public enum PlacesTypes {
     пирамида,

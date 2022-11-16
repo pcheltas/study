@@ -1,4 +1,4 @@
-package SpaceObjects;
+package spaceObjects;
 
 abstract class SpaceObject {
     private String name;

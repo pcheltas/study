@@ -1,7 +1,7 @@
-package SpaceObjects;
+package spaceObjects;
 
-import Inters.ActSat;
-import Places.*;
+import inters.ActSat;
+import places.*;
 
 public class Satellite extends SpaceObject implements ActSat {
 
@@ -27,5 +27,5 @@ public class Satellite extends SpaceObject implements ActSat {
 
     @Override
     public String toString(){
-        return ("Имя:" + getName() + "; обладает силой: " + Force);}
+        return ("Имя:" + getName() + "; обладает силой: " + getForce());}
 }

@@ -1,8 +1,8 @@
-import People.*;
-import Places.Place;
-import Places.PlacesTypes;
-import SpaceObjects.*;
-import Things.Stuff;
+import people.*;
+import places.Place;
+import places.PlacesTypes;
+import spaceObjects.*;
+import things.Stuff;
 
 public class Main {
     public static void main(String[] args) {
@@ -25,12 +25,13 @@ public class Main {
         Moon.distortImage(aim);
 
         Stuff umbrella = new Stuff("космические зонтики");
-        Sun.warm();
-        if (Sun.getWeather().equals("испепеляет")){
+        Stuff suit = new Stuff ("скафандры");
+        Sun.warm(suit.getName());
+        if ("испепеляет".equals(Sun.getWeather())){
             Sun.stealAir();
-            Neznaika.notToUse(umbrella.getName());
+            Neznaika.notToUse(umbrella);
             Neznaika.suffer();
-            Ponchik.notToUse(umbrella.getName());
+            Ponchik.notToUse(umbrella);
             Ponchik.suffer();
 
         }

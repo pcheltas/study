@@ -1,4 +1,4 @@
-package Things;
+package things;
 
 public class Stuff {
     private String name;
@@ -13,6 +13,6 @@ public class Stuff {
 
     @Override
     public String toString(){
-        return ("Вещь:" + name);
+        return ("Вещь:" + getName());
     }
 }

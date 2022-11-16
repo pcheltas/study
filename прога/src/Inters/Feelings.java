@@ -1,4 +1,4 @@
-package Inters;
+package inters;
 
 public interface Feelings {
     void feel();

@@ -1,4 +1,4 @@
-package Places;
+package places;
 
 public class Place {
     private PlacesTypes name;
@@ -12,7 +12,7 @@ public class Place {
     }
 
     public void takePlace(){
-        if (name == PlacesTypes.пирамида){
+        if (getName() == PlacesTypes.пирамида){
             System.out.println("Цель пути: пирамида");
         }
         else{
@@ -22,7 +22,7 @@ public class Place {
 
     @Override
     public String toString() {
-        return "локация " + name;
+        return "локация " + getName();
     }
 
 

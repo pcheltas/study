@@ -1,17 +1,21 @@
-package People;
+package people;
 
 
-import Inters.Actions;
-import Inters.Feelings;
+import inters.Actions;
+import inters.Feelings;
+import things.Stuff;
 
 public class Person implements Actions, Feelings {
     private String name;
-    private Bodykit body;
+
     public String getName() {
         return name;
     }
+    private Bodykit body;
 
-
+    public Bodykit getBody() {
+        return body;
+    }
 
     public Person(String name, Bodykit body){
         this.name=name;
@@ -31,8 +35,8 @@ public class Person implements Actions, Feelings {
         }
     }
 
-    public void notToUse (String stuff) {
-            System.out.println(getName() + " не смог сообразить что можно использовать " + stuff);
+    public void notToUse (Stuff stuff) {
+            System.out.println(getName() + " не смог сообразить что можно использовать " + stuff.getName());
     }
 
     public void suffer(){
@@ -41,7 +45,7 @@ public class Person implements Actions, Feelings {
 
     @Override
     public String toString(){
-        return ("Имя:" + name + "; телосложение: " + body);
+        return ("Имя:" + getName() + "; телосложение: " + getBody());
     }
 
 
