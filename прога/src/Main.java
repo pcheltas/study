@@ -1,8 +1,9 @@
+import body.*;
 import people.*;
 import places.Place;
 import places.PlacesTypes;
 import spaceObjects.*;
-import things.Stuff;
+import things.Stufff;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,23 +11,36 @@ public class Main {
         Star Sun = new Star("Солнце");
         Person Neznaika = new Person("Незнайка", Bodykit.STURDY);
         Person Ponchik = new Person("Пончик", Bodykit.FAT);
-        Moon.pullToCentre();
-        if (Moon.getForce().equals("сильная")){
+        Moon.pullToCentre(Moon.getName());
+        Parts brain = new Parts(TypeOfParts.BRAIN);
+        Parts vessels = new Parts(TypeOfParts.VESSELS);
+        Parts vessels2 = new Parts(TypeOfParts.VESSELS);
+        brain.isPart();
+        brain.feel();
+        vessels.isPart();
+        vessels.feel();
+
+
+        System.out.println();
+        if ("сильная".equals(Moon.getForce())){
             Neznaika.feel();
             Ponchik.feel();
         }
-        Place aim = new Place(PlacesTypes.пирамида);
-        Place current = new Place (PlacesTypes.дорога);
+        System.out.println();
+        Place aim = new Place(PlacesTypes.PYRAMID);
+        Place current = new Place (PlacesTypes.ROAD);
 
         current.takePlace();
-        Neznaika.walk("час");
-        Ponchik.walk("час");
+        Neznaika.moveTo();
+        Ponchik.moveTo();
         aim.takePlace();
-        Moon.distortImage(aim);
+        Moon.distortImage(aim.toString());
 
-        Stuff umbrella = new Stuff("космические зонтики");
-        Stuff suit = new Stuff ("скафандры");
-        Sun.warm(suit.getName());
+
+        Stufff umbrella = Stufff.UMBRELLA;
+        Stufff suit = Stufff.SUIT;
+
+        Sun.warm(suit);
         if ("испепеляет".equals(Sun.getWeather())){
             Sun.stealAir();
             Neznaika.notToUse(umbrella);
@@ -35,9 +49,6 @@ public class Main {
             Ponchik.suffer();
 
         }
-
-
-
 
 
     }

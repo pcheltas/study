@@ -1,44 +1,55 @@
 package people;
 
 
-import inters.Actions;
-import inters.Feelings;
-import things.Stuff;
 
-public class Person implements Actions, Feelings {
+import body.Parts;
+import inters.ActionsBased;
+import inters.FeelingsFromGravity;
+import inters.FeelingsFromWeather;
+import things.Stufff;
+
+public class Person implements  ActionsBased, FeelingsFromGravity, FeelingsFromWeather {
+    private static int number=0;
+    private int current;
     private String name;
+    private Bodykit body;
 
     public String getName() {
         return name;
     }
-    private Bodykit body;
 
     public Bodykit getBody() {
         return body;
     }
 
     public Person(String name, Bodykit body){
+        number++;
+        current=number;
         this.name=name;
         this.body=body;
     }
 
-    public void walk(String time) {
-        System.out.println(getName() + " идет на протяжении времени: " + time );
+    public void notToUse (Stufff stuff) {
+        System.out.println(getName() + " не использует " + stuff.getName());
     }
 
+    @Override
+    public void moveTo() {
+        System.out.println(getName() + " идет");
+    }
+    @Override
     public void feel() {
-        if (body==Bodykit.FAT){
-            System.out.println(getName() + " испытывает страх из-за чувства зависания вниз головой");
+        switch (body){
+            case FAT:
+                System.out.println(getName() + ' ' + Bodykit.FAT.getName() + " и испытывает страх из-за чувства зависания вниз головой");
+                break;
+            case STURDY:
+                System.out.println(getName() + ' ' + Bodykit.STURDY.getName() + " и не испытывает дискомфорта");
+                break;
+            }
         }
-        else{
-            System.out.println(getName() + " не испытывает дискомфорта благодаря своей комплекции");
-        }
-    }
 
-    public void notToUse (Stuff stuff) {
-            System.out.println(getName() + " не смог сообразить что можно использовать " + stuff.getName());
-    }
-
+    @Override
     public void suffer(){
         System.out.println(getName() + " изнывает от жары");
     }
@@ -48,7 +59,20 @@ public class Person implements Actions, Feelings {
         return ("Имя:" + getName() + "; телосложение: " + getBody());
     }
 
+    @Override
+    public int hashCode() {
+        return name.hashCode() + body.hashCode() + current;
+    }
 
-
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (this == obj){
+            return true;
+        }
+        return this.current == ((Person)obj).current;
+    }
 
 }

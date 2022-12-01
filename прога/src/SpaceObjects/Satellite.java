@@ -1,31 +1,37 @@
 package spaceObjects;
 
-import inters.ActSat;
-import places.*;
-
-public class Satellite extends SpaceObject implements ActSat {
-
-
-    private String Force;
-
-    public String getForce() {
-        return Force;
-    }
-
-    public Satellite(String name){
+public class Satellite extends SpaceObject {
+    private static int number=0;
+    private int current;
+    public Satellite (String name){
         super(name);
+        number++;
+        current=number;
     }
 
-    public void pullToCentre() {
+    @Override
+    public void pullToCentre(String name) {
         System.out.println(getName() + " притягивает все с меньшей силой");
-        Force = "сильная";
-    }
-
-    public void distortImage(Place p){
-        System.out.println ( p.getName() + " видится четко и поэтому кажется ближе");
+        setForce("сильная");
     }
 
     @Override
     public String toString(){
         return ("Имя:" + getName() + "; обладает силой: " + getForce());}
+
+    @Override
+    public int hashCode() {
+        return super.hashCode() + getName().hashCode() + current;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == null || getClass() != obj.getClass()) {
+            return false;
+        }
+        if (this == obj){
+            return true;
+        }
+        return this.current == ((Satellite) obj).current;
+    }
 }
