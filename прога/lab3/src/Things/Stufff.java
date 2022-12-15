@@ -4,7 +4,8 @@ public enum Stufff {
     UMBRELLA("космический зонтик"),
     SUIT("скафандры");
     private String name;
-    Stufff(String name){
+
+    Stufff(String name) {
         this.name = name;
     }
 
