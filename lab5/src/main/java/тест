@@ -1,0 +1,81 @@
+{
+  "map": {
+    "3": {
+      "id": 3,
+      "name": "John Smith",
+      "coordinates": {
+        "x": 10.0,
+        "y": 20
+      },
+      "creationDate": 1525521055000,
+      "salary": 50000.0,
+      "startDate": 1639293600.000000000,
+      "endDate": null,
+      "status": "FIRED",
+      "organization": {
+        "fullName": "ABC Inc.",
+        "annualTurnover": 1000000,
+        "employeesCount": 50
+      }
+    },
+    "5": {
+      "id": 5,
+      "name": "Абдуил Хуинбек",
+      "coordinates": {
+        "x": 10.0,
+        "y": 20
+      },
+      "creationDate": 1525521055000,
+      "salary": 50000.0,
+      "startDate": 1639293600.000000000,
+      "endDate": null,
+      "status": "FIRED",
+      "organization": {
+        "fullName": "Шаурмичная у Армена",
+        "annualTurnover": 1000000,
+        "employeesCount": 50
+      }
+    },
+    "60": {
+      "id": 60,
+      "name": "plohoyparen",
+      "coordinates": {
+        "x": 1.0,
+        "y": 1
+      },
+      "creationDate": 1687369855000,
+      "salary": 20000.0,
+      "startDate": 1539330600.000000000,
+      "endDate": null,
+      "status": "RECOMMENDED_FOR_PROMOTION",
+      "organization": {
+        "fullName": "контора пидорасов",
+        "annualTurnover": 1000000,
+        "employeesCount": 50
+      }
+    }
+  }
+}
+
+
+
+insert
+fghjk
+1
+1
+300000
+2020 12 12
+10 20
+2021 12 12
+10 20
+уволен
+вапро
+123
+123
+show
+
+
+execute_script script
+
+execute_script script2
+

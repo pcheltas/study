@@ -1,0 +1,4 @@
+show
+remove_key 3
+show
+execute_script script2
