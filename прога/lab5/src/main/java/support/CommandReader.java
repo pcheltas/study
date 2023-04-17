@@ -48,18 +48,20 @@ public class CommandReader implements ReadWithArgument {
         argumentCommands.put("remove_any_by_end_date", new RemoveByEndDate());
 
         try {
-            if (command.trim().toLowerCase().split(" ").length == 1 &&
-                    noArgumentCommands.containsKey(command.trim().toLowerCase().split(" ")[0])) {
-                noArgumentCommands.get(command.trim().toLowerCase().split(" ")[0]).execute();
+            if (!command.isBlank()) {
+                if (command.trim().toLowerCase().split(" ").length == 1 &&
+                        noArgumentCommands.containsKey(command.trim().toLowerCase().split(" ")[0])) {
+                    noArgumentCommands.get(command.trim().toLowerCase().split(" ")[0]).execute();
 
-            } else if (command.trim().toLowerCase().split(" ").length > 1 &&
-                    argumentCommands.containsKey(command.trim().toLowerCase().split(" ")[0])) {
-                argumentCommands.get(command.trim().toLowerCase().split(" ")[0]).getArgument(command.trim().toLowerCase().split(" ")[1]);
-            } else {
-                System.out.println("Команда " + command + " введена неверно");
-                if (Loader.isExecuteHasNoProblems()){
-                    Loader.setExecuteHasNoProblems();
-                    throw new RuntimeException("Команда в файле некорректна");
+                } else if (command.trim().toLowerCase().split(" ").length > 1 &&
+                        argumentCommands.containsKey(command.trim().toLowerCase().split(" ")[0])) {
+                    argumentCommands.get(command.trim().toLowerCase().split(" ")[0]).getArgument(command.trim().toLowerCase().split(" ")[1]);
+                } else {
+                    System.out.println("Команда " + command + " введена неверно");
+                    if (Loader.isExecuteWorks() && Loader.isExecuteHasNoProblems()) {
+                        Loader.setExecuteHasNoProblems();
+                        throw new RuntimeException("Команда в файле некорректна");
+                    }
                 }
             }
         } catch (IllegalArgumentException e) {

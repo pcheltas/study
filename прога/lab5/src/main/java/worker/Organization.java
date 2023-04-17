@@ -50,11 +50,14 @@ public class Organization {
      @throws IllegalArgumentException if the full name is empty or null, or has a length greater than 1516
      */
     public void setFullName(String fullName) {
-        if (fullName == null || fullName.isBlank())
-            throw new IllegalArgumentException("Название организации не может быть пустым");
-        if (fullName.length()>1516)
-            throw new IllegalArgumentException("Название организации слишком длинное");
-        this.fullName = fullName;
+        if (fullName.isBlank()){
+            this.fullName = null;
+        }else {
+            //    throw new IllegalArgumentException("Название организации не может быть пустым");
+            if (fullName.length() > 1516)
+                throw new IllegalArgumentException("Название организации слишком длинное");
+            this.fullName = fullName;
+        }
 
     }
 
@@ -70,7 +73,7 @@ public class Organization {
         if (annualTurnover.isBlank()) throw new IllegalArgumentException("Введенные данные не могут быть пустыми");
         try{
             if (Integer.parseInt(annualTurnover) <= 0)
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Введенное число должно быть больше 0");
             this.annualTurnover = Integer.parseInt(annualTurnover);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("Введенные данные должны быть числом");
@@ -90,13 +93,13 @@ public class Organization {
         employeesCount = scan.nextLine();
         if (employeesCount.isBlank()) throw new IllegalArgumentException("Введенные данные не могут быть пустыми");
         try{
-            if (Integer.parseInt(employeesCount) == 0)
+            if (Integer.parseInt(employeesCount) <= 0)
                 throw new IllegalArgumentException("Введенное число должно быть больше 0");
             this.employeesCount = Integer.parseInt(employeesCount);
         } catch (NumberFormatException e){
             throw new IllegalArgumentException("Введенные данные должны быть числом");
         } catch (IllegalArgumentException e){
-            throw new IllegalArgumentException("Введенные данные не могут быть пустыми");
+            throw new IllegalArgumentException(e.getMessage());
         }
 
         //this.employeesCount = Integer.parseInt(employeesCount);

@@ -19,4 +19,13 @@ public class Info implements Command{
         System.out.println("Тип коллекции: TreeMap, хранит данные о работниках");
         System.out.println("Количество элементов: " + Loader.repo.map.size());
     }
+
+    /**
+     Returns a String representation of the command, including its name and purpose.
+     @return a String representation of the command
+     */
+    @Override
+    public String toString(){
+        return "info : вывести в стандартный поток вывода информацию о коллекции (тип, дата инициализации, количество элементов)";
+    }
 }

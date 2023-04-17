@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  The Worker class represents a worker. It implements the Comparable interface for sorting workers by name length.
  */
 public class Worker implements Comparable<Worker>{
-    private static int counter=1;
+    private static int counter=0;
     private int id;//Значение поля должно быть больше 0, Значение этого поля должно быть уникальным, Значение этого поля должно генерироваться автоматически
     private String name; //Поле не может быть null, Строка не может быть пустой
     private Coordinates coordinates; //Поле не может быть null
@@ -169,8 +169,8 @@ public class Worker implements Comparable<Worker>{
         salary = scan.nextLine();
         if (salary.isBlank()) throw new IllegalArgumentException("Введенные данные не могут быть пустыми");
         try{
-            if (Float.parseFloat(salary) == 0.0f)
-                throw new IllegalArgumentException("Введенное значение не может быть равно 0");
+            if (Float.parseFloat(salary) <= 0.0f)
+                throw new IllegalArgumentException("Введенное значение не может быть меньше или равно 0");
         } catch(NumberFormatException e){
             throw new IllegalArgumentException("Введенные данные должны быть числом");
         } catch (IllegalStateException e){
@@ -224,7 +224,10 @@ public class Worker implements Comparable<Worker>{
         String regex = "^\\d{4}\\s(0[1-9]|1[0-2])\\s(0[1-9]|[12]\\d|3[01])$";
         Pattern pattern = Pattern.compile(regex);
         Matcher matcher = pattern.matcher(date);
-        if (date.isBlank() || !matcher.matches()) throw new IllegalArgumentException("Введенная дата не соответствует формату");
+        if (date.isBlank()){
+            return null;
+        }
+        if (date!=null & !matcher.matches()) throw new IllegalArgumentException("Введенная дата не соответствует формату");
         return date;
     }
 

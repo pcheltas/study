@@ -50,7 +50,7 @@ public class ExecuteScript implements ArgumentCommand{
                 this.file = new File(link);
                 //System.out.println("Имя файла " + fileName);
                 //System.out.println("Путь " + link);
-                stackWithFiles.push(fileName);
+                stackWithFiles.push(this.file.getAbsolutePath());
 
                 Scanner scanner = new Scanner(file);
                 stackWithScanners.push(scanner);
@@ -79,6 +79,9 @@ public class ExecuteScript implements ArgumentCommand{
                 //System.out.println("файл исполнен");
 
             } catch (IllegalArgumentException e) {
+                stackWithScanners.clear();
+                stackWithFiles.clear();
+                lineReader.setScanner(new Scanner(System.in));
                 System.out.println(e.getMessage());
             } catch (IOException e) {
                 lineReader.setScanner(new Scanner(System.in));

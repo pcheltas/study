@@ -9,4 +9,5 @@ import java.util.TreeMap;
 public class WorkerRepository {
     private int id = Worker.getCounter();
     public TreeMap<Integer, Worker> map = new TreeMap<>();
+
 }

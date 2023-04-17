@@ -45,7 +45,6 @@ public class ConsoleCreation{
                 }
                 while (true) {
                     while (true) {
-
                         try {
                             System.out.println("Введите float координату x ");
                             coordinates.setX(lineReader.getScanner());
@@ -58,7 +57,7 @@ public class ConsoleCreation{
                     while (true) {
                         System.out.println("Введите float координату y ");
                         try {
-
+                            coordinates.setY(lineReader.getScanner());
                             break;
                         } catch (IllegalArgumentException e) {
                             System.out.println(e.getMessage());
@@ -110,7 +109,7 @@ public class ConsoleCreation{
 
                 while (true) {
                     String date;
-                    String time;
+                    String time = null;
                     while (true) {
                         System.out.println("Введите дату увольнения в формате 'гггг мм дд' " +
                                 "(через пробел, без других символов)");
@@ -121,34 +120,45 @@ public class ConsoleCreation{
                             System.out.println(e.getMessage());
                         }
 
-                    }
-                    while (true) {
-                        System.out.println("Введите время увольнения в формате 'чч мм' по московскому времени" +
-                                "(через пробел, без других символов)");
-                        try {
-                            time = worker.setTime(lineReader.read());
-                            break;
-                        } catch (IllegalArgumentException e) {
-                            System.out.println(e.getMessage());
-                        }
+                    }if (date==null) {
+                        break;
+                    }else {
+                        while (true) {
+                            System.out.println("Введите время увольнения в формате 'чч мм' по московскому времени" +
+                                    "(через пробел, без других символов)");
+                            try {
+                                time = worker.setTime(lineReader.read());
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                            }
 
+                        }
                     }
-                    worker.setEndDate(date, time);
+                        worker.setEndDate(date, time);
                     break;
                 }
 
                 while (true) {
-                    System.out.println("Введите статус (один из предложенных):");
-                    ArrayList s = new ArrayList();
-                    for (Status i : Status.values()) {
-                        s.add(i.getDescription());
-                        System.out.println(i.getDescription());
-                    }
-                    try {
-                        worker.setStatus(lineReader.read(), s);
+                    if (worker.getEndDate()!=null) {
+                        ArrayList s = new ArrayList();
+                        for (Status i : Status.values()) {
+                            s.add(i.getDescription());}
+                        worker.setStatus("уволен", s);
                         break;
-                    } catch (IllegalArgumentException e) {
-                        System.out.println(e.getMessage());
+                    }else {
+                        System.out.println("Введите статус (один из предложенных):");
+                        ArrayList s = new ArrayList();
+                        for (Status i : Status.values()) {
+                            s.add(i.getDescription());
+                            System.out.println(i.getDescription());
+                        }
+                        try {
+                            worker.setStatus(lineReader.read(), s);
+                            break;
+                        } catch (IllegalArgumentException e) {
+                            System.out.println(e.getMessage());
+                        }
                     }
 
                 }
@@ -162,27 +172,31 @@ public class ConsoleCreation{
                         } catch (IllegalArgumentException e) {
                             System.out.println(e.getMessage());
                         }
-                    }
-                    while (true) {
-                        try {
-                            System.out.println("Введите ежегодный оборот компании");
-                            org.setAnnualTurnover(lineReader.getScanner());
-                            break;
-                        } catch (IllegalArgumentException e) {
-                            System.out.println(e.getMessage());
+                    }if (org.getFullName() != null) {
+                        while (true) {
+                            try {
+                                System.out.println("Введите ежегодный оборот компании");
+                                org.setAnnualTurnover(lineReader.getScanner());
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
-                    }
-                    while (true) {
-                        try {
-                            System.out.println("Введите количество работников в компании");
-                            org.setEmployeesCount(lineReader.getScanner());
-                            break;
-                        } catch (IllegalArgumentException e) {
-                            System.out.println(e.getMessage());
+                        while (true) {
+                            try {
+                                System.out.println("Введите количество работников в компании");
+                                org.setEmployeesCount(lineReader.getScanner());
+                                break;
+                            } catch (IllegalArgumentException e) {
+                                System.out.println(e.getMessage());
+                            }
                         }
+                        worker.setOrganization(org);
+                        break;
+                    }else{
+                        worker.setOrganization(null);
+                        break;
                     }
-                    worker.setOrganization(org);
-                    break;
                 }
             }else if (Loader.isExecuteWorks()){
                 try {
@@ -206,9 +220,13 @@ public class ConsoleCreation{
                     }
                     worker.setStatus(lineReader.read(), s);
                     org.setFullName(lineReader.read());
-                    org.setAnnualTurnover(lineReader.getScanner());
-                    org.setEmployeesCount(lineReader.getScanner());
-                    worker.setOrganization(org);
+                    if (org.getFullName() != null) {
+                        org.setAnnualTurnover(lineReader.getScanner());
+                        org.setEmployeesCount(lineReader.getScanner());
+                        worker.setOrganization(org);
+                    }else{
+                        worker.setOrganization(null);
+                    }
                 }catch (IllegalArgumentException e){
                     lineReader.setScanner(new Scanner(System.in));
                     throw new IllegalArgumentException("Данные в файле не валидны. Измените содержимое файла и поробуйте снова");
