@@ -92,7 +92,7 @@ public class Client {
                     System.out.println("Что-то пошло не так");
                 }
                 if (datagramChannel != null) datagramChannel.close();
-                Printer.println("Работа клиента завершена.");
+                Printer.println("Работа клиента завершена");
                 System.exit(0);
             }
         } catch (IOException e) {

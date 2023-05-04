@@ -3,7 +3,6 @@ package client.help;
 import common.exceptions.InputException;
 import common.exceptions.ScriptRecursionException;
 import common.exceptions.IncorrectInputInScriptException;
-import common.exceptions.WrongCommandException;
 import common.help.Printer;
 import common.help.Request;
 import common.help.ServerResponse;
@@ -36,55 +35,37 @@ public class RequestCreation {
                 case "":
                     return CorrectCode.ERROR;
                 case "clear":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
+                case "print_field_descending_end_date":
+                case "help":
+                case "info":
+                case "show":
+                    if (!commandArgument.isEmpty()) throw new IllegalArgumentException();
                     break;
                 case "execute_script":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
+                    if (commandArgument.isEmpty()) throw new IllegalArgumentException();
                     return CorrectCode.SCRIPT;
                 case "exit":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
+                    if (!commandArgument.isEmpty()) throw new IllegalArgumentException();
                     System.exit(0);
                 case "filter_greater_than_salary":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
-                    break;
-                case "help":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
-                    break;
-                case "info":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
+                case "remove_any_by_end_date":
+                case "remove_key":
+                    if (commandArgument.isEmpty()) throw new IllegalArgumentException();
                     break;
                 case "insert":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
-                    return CorrectCode.OBJECT;
-                case "print_field_descending_end_date":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
-                    break;
-                case "remove_any_by_end_date":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
-                    break;
                 case "remove_if_greater":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
+                    if (!commandArgument.isEmpty()) throw new IllegalArgumentException();
                     return CorrectCode.OBJECT;
-                case "remove_key":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
-                    break;
                 case "replace_if_greater":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
-                    return CorrectCode.OBJECT;
                 case "replace_if_lowe":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
-                    return CorrectCode.OBJECT;
-                case "show":
-                    if (!commandArgument.isEmpty()) throw new WrongCommandException();
-                    break;
                 case "update_by_id":
-                    if (commandArgument.isEmpty()) throw new WrongCommandException();
+                    if (commandArgument.isEmpty()) throw new IllegalArgumentException();
                     return CorrectCode.OBJECT;
                 default:
                     Printer.println("Команда введена неверно");
                     return CorrectCode.ERROR;
             }
-        } catch (WrongCommandException e) {
+        } catch (IllegalArgumentException e) {
             System.out.println("Команда введена неверно");
             return CorrectCode.ERROR;
         }
@@ -119,7 +100,7 @@ public class RequestCreation {
                         while (scriptMode() && !chosenScanner.hasNextLine()) {
                             chosenScanner.close();
                             chosenScanner = scannerStack.pop();
-                            Printer.println("Возвращаюсь к скрипту '" + scriptStack.pop().getName());
+                            Printer.println("Возвращаюсь к скрипту " + scriptStack.pop().getName());
                         }
                         if (!chosenScanner.hasNextLine()) {
                             break; 
@@ -131,9 +112,8 @@ public class RequestCreation {
 
                         userCommand = (userInput.trim() + " ").split(" ", 2);
                         userCommand[1] = userCommand[1].trim();
-                        //System.out.println(userCommand[1]);
                 } catch (NoSuchElementException | IllegalStateException e) {
-                    Printer.printError("Ошибка при вводе команды!");
+                    Printer.printError("Команда введена неверно");
                     userCommand = new String[]{"", ""};
                 }
                 processingCode = processCommand(userCommand[0], userCommand[1]);
@@ -154,7 +134,7 @@ public class RequestCreation {
                         scannerStack.push(chosenScanner);
                         scriptStack.push(scriptFile);
                         chosenScanner = new Scanner(scriptFile);
-                        Printer.println("Исполняется скрипт '" + scriptFile.getName());
+                        Printer.println("Исполняется скрипт " + scriptFile.getName());
                         break;
                 }
             } catch (FileNotFoundException e) {

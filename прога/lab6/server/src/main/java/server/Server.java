@@ -58,8 +58,8 @@ public class Server {
                     String line = serverReader.readLine();
                     if (line.trim().equals("save")) {
                         Save save = new Save(loader);
-                        System.out.println("Сохранение коллекции");
                         save.execute("", null);
+                        System.out.println("Коллекция успешно сохранена");
                     }
                 } else {
                     Thread.sleep(100);

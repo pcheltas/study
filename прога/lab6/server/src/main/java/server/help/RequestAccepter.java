@@ -36,6 +36,5 @@ public class RequestAccepter {
             throw new RuntimeException(e);
         }
         return new Response(ServerResponse.OK, ResponseOutputer.getAndClear());
-//        return new Response(ServerResponse.OK.getServerResponse(), ResponseOutputer.getAndClear());
     }
 }

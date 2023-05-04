@@ -20,7 +20,6 @@ public class CommandControl {
         commands.put("insert", insert);
         commands.put("info", info);
         commands.put("save", save);
-        //commands.put("exit", exit);
         commands.put("replace_if_greater", replaceIfGreater);
         commands.put("replace_if_lowe", replaceIfLowe);
         commands.put("remove_if_greater", removeIfGreater);

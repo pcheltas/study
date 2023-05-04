@@ -25,16 +25,6 @@ public class ConsoleCreation {
         scriptWork = true;
     }
 
-
-//    public static boolean containsOnlyDigitsOrLetters(String str, boolean onlyDigits) {
-//        if (str.isBlank()) {
-//            return false;
-//        }
-//        String regex = onlyDigits ? "^\\d+$" : "^[a-zA-Z]+$";
-//        return str.matches(regex);
-//    }
-
-
     public String setName() throws InputException {
         String name;
         while (true) {
@@ -66,21 +56,16 @@ public class ConsoleCreation {
             try {
                 System.out.println("Введите float координату x ");
                 line = scanner.nextLine().trim();
-                if (line.isBlank()) throw new EmptyInputException("не может быть пустым");
+                if (line.isBlank()) throw new IllegalArgumentException("Данные не могут быть пустыми");
                 coordX = Float.parseFloat(line);
-                if (coordX > 862) throw new InputException();
+                if (coordX > 862) throw new IllegalArgumentException("Данные выходят за область определения. Число должно быть больше -862");
                 scriptWork = true;
                 return coordX;
-            } catch (EmptyInputException e) {
+            } catch (IllegalArgumentException e ) {
                 System.out.println(e.getMessage());
-            } catch (InputException e) {
-                System.out.println("Данные выходят за область определения. Число должно быть больше -862");
-            } catch (NumberFormatException e) {
-                System.out.println("Данные не могут быть пустыми");
             } finally {
                 if ((!loop) && (!scriptWork)) {
                     throw new InputException();
-
                 }
                 scriptWork = false;
             }
